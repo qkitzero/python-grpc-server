@@ -1,0 +1,19 @@
+services:
+  tamashii-server:
+    build:
+      context: .
+      dockerfile: ./build/tamashii/Dockerfile
+    container_name: tamashii-server
+    restart: always
+    environment:
+      - PORT=${SERVER_PORT}
+    ports:
+      - "${SERVER_EXTERNAL_PORT}:${SERVER_PORT}"
+
+  protoc:
+    build:
+      context: .
+      dockerfile: ./build/protoc/Dockerfile
+    volumes:
+      - .:/work
+    command: /bin/sh -c "python -m grpc_tools.protoc -I./proto --python_out=./pb --pyi_out=./pb --grpc_python_out=./pb ./proto/*.proto"
