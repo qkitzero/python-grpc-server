@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package tamashii;
+
+service TamashiiService {
+	rpc CreateTamashii (CreateTamashiiRequest) returns (CreateTamashiiResponse);
+}
+
+message CreateTamashiiRequest {
+}
+
+message CreateTamashiiResponse {
+	string tamashii_id = 1;
+}
