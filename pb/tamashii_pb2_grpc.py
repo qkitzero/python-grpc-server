@@ -39,12 +39,23 @@ class TamashiiServiceStub(object):
                 request_serializer=tamashii__pb2.CreateTamashiiRequest.SerializeToString,
                 response_deserializer=tamashii__pb2.CreateTamashiiResponse.FromString,
                 _registered_method=True)
+        self.GetTamashii = channel.unary_unary(
+                '/tamashii.TamashiiService/GetTamashii',
+                request_serializer=tamashii__pb2.GetTamashiiRequest.SerializeToString,
+                response_deserializer=tamashii__pb2.GetTamashiiResponse.FromString,
+                _registered_method=True)
 
 
 class TamashiiServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def CreateTamashii(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetTamashii(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -57,6 +68,11 @@ def add_TamashiiServiceServicer_to_server(servicer, server):
                     servicer.CreateTamashii,
                     request_deserializer=tamashii__pb2.CreateTamashiiRequest.FromString,
                     response_serializer=tamashii__pb2.CreateTamashiiResponse.SerializeToString,
+            ),
+            'GetTamashii': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTamashii,
+                    request_deserializer=tamashii__pb2.GetTamashiiRequest.FromString,
+                    response_serializer=tamashii__pb2.GetTamashiiResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -86,6 +102,33 @@ class TamashiiService(object):
             '/tamashii.TamashiiService/CreateTamashii',
             tamashii__pb2.CreateTamashiiRequest.SerializeToString,
             tamashii__pb2.CreateTamashiiResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetTamashii(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/tamashii.TamashiiService/GetTamashii',
+            tamashii__pb2.GetTamashiiRequest.SerializeToString,
+            tamashii__pb2.GetTamashiiResponse.FromString,
             options,
             channel_credentials,
             insecure,

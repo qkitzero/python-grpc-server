@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0etamashii.proto\x12\x08tamashii\"\x17\n\x15\x43reateTamashiiRequest\"-\n\x16\x43reateTamashiiResponse\x12\x13\n\x0btamashii_id\x18\x01 \x01(\t2f\n\x0fTamashiiService\x12S\n\x0e\x43reateTamashii\x12\x1f.tamashii.CreateTamashiiRequest\x1a .tamashii.CreateTamashiiResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0etamashii.proto\x12\x08tamashii\"%\n\x15\x43reateTamashiiRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"$\n\x16\x43reateTamashiiResponse\x12\n\n\x02id\x18\x01 \x01(\t\" \n\x12GetTamashiiRequest\x12\n\n\x02id\x18\x01 \x01(\t\"#\n\x13GetTamashiiResponse\x12\x0c\n\x04name\x18\x01 \x01(\t2\xb2\x01\n\x0fTamashiiService\x12S\n\x0e\x43reateTamashii\x12\x1f.tamashii.CreateTamashiiRequest\x1a .tamashii.CreateTamashiiResponse\x12J\n\x0bGetTamashii\x12\x1c.tamashii.GetTamashiiRequest\x1a\x1d.tamashii.GetTamashiiResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,9 +32,13 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'tamashii_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_CREATETAMASHIIREQUEST']._serialized_start=28
-  _globals['_CREATETAMASHIIREQUEST']._serialized_end=51
-  _globals['_CREATETAMASHIIRESPONSE']._serialized_start=53
-  _globals['_CREATETAMASHIIRESPONSE']._serialized_end=98
-  _globals['_TAMASHIISERVICE']._serialized_start=100
-  _globals['_TAMASHIISERVICE']._serialized_end=202
+  _globals['_CREATETAMASHIIREQUEST']._serialized_end=65
+  _globals['_CREATETAMASHIIRESPONSE']._serialized_start=67
+  _globals['_CREATETAMASHIIRESPONSE']._serialized_end=103
+  _globals['_GETTAMASHIIREQUEST']._serialized_start=105
+  _globals['_GETTAMASHIIREQUEST']._serialized_end=137
+  _globals['_GETTAMASHIIRESPONSE']._serialized_start=139
+  _globals['_GETTAMASHIIRESPONSE']._serialized_end=174
+  _globals['_TAMASHIISERVICE']._serialized_start=177
+  _globals['_TAMASHIISERVICE']._serialized_end=355
 # @@protoc_insertion_point(module_scope)
