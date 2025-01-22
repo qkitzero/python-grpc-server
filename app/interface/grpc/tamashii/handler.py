@@ -1,5 +1,4 @@
-from pb import tamashii_pb2_grpc
-from pb import tamashii_pb2
+from pb import tamashii_pb2, tamashii_pb2_grpc
 
 
 class TamashiiServicer(tamashii_pb2_grpc.TamashiiServiceServicer):
