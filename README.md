@@ -1,4 +1,4 @@
-# Tamashii
+# Tamashii Service
 
 - Microservices architecture
 - gRPC
