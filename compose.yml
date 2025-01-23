@@ -7,8 +7,42 @@ services:
     restart: always
     environment:
       - PORT=${SERVER_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+    depends_on:
+      tamashii-db:
+        condition: service_healthy
     ports:
       - "${SERVER_EXTERNAL_PORT}:${SERVER_PORT}"
+    healthcheck:
+      test: ["CMD", "grpc_health_probe", "-addr=localhost:${SERVER_PORT}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+  tamashii-db:
+    image: mysql:8.0
+    container_name: tamashii-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_EXTERNAL_PORT}:${DB_PORT}"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${DB_USER}", "-p${DB_PASSWORD}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - tamashii-db-data:/var/lib/mysql
 
   protoc:
     build:
@@ -17,3 +51,6 @@ services:
     volumes:
       - .:/work
     command: /bin/sh -c "python -m grpc_tools.protoc -I./proto --python_out=./pb --pyi_out=./pb --grpc_python_out=./pb ./proto/*.proto"
+
+volumes:
+  tamashii-db-data:
