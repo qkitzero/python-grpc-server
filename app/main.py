@@ -2,10 +2,10 @@ import os
 from concurrent import futures
 
 import grpc
-from app.application.user_usecase import UserService
+from app.application.user_usecase import UserUsecase
 from infrastructure.db import setup_engine
 from app.infrastructure.user_repository import UserRepositoryImpl
-from app.interface.grpc.user_handler import UserServicer
+from app.interface.grpc.user_handler import UserHandler
 from sqlalchemy.orm import Session, sessionmaker
 
 from pb.user_pb2_grpc import add_UserServiceServicer_to_server
@@ -23,11 +23,11 @@ def serve():
     session = SessionClass()
 
     user_repository = UserRepositoryImpl(session)
-    user_service = UserService(user_repository)
+    user_usecase = UserUsecase(user_repository)
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
-    add_UserServiceServicer_to_server(UserServicer(user_service), server)
+    add_UserServiceServicer_to_server(UserHandler(user_usecase), server)
 
     port = os.getenv("PORT")
     server.add_insecure_port(f"[::]:{port}")

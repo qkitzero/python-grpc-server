@@ -4,7 +4,7 @@ from app.domain.user import User
 from app.domain.user_repository_interface import UserRepositoryInterface
 
 
-class UserService:
+class UserUsecase:
     def __init__(self, user_repository: UserRepositoryInterface):
         self.user_repository = user_repository
 
