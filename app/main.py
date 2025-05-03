@@ -2,12 +2,12 @@ import os
 from concurrent import futures
 
 import grpc
-from app.application.user_usecase import UserUsecase
 from infrastructure.db import setup_engine
-from app.infrastructure.user_repository import UserRepositoryImpl
-from app.interface.grpc.user_handler import UserHandler
 from sqlalchemy.orm import Session, sessionmaker
 
+from app.application.user_usecase import UserUsecase
+from app.infrastructure.user_repository import UserRepositoryImpl
+from app.interface.grpc.user_handler import UserHandler
 from gen.python.proto.user.v1 import user_pb2_grpc
 
 
