@@ -2,13 +2,13 @@ import os
 from concurrent import futures
 
 import grpc
-from application.tamashii_service import TamashiiService
+from app.application.user_usecase import UserService
 from infrastructure.db import setup_engine
-from infrastructure.tamashii_repository import TamashiiRepositoryImpl
-from interface.grpc.tamashii_handler import TamashiiServicer
+from app.infrastructure.user_repository import UserRepositoryImpl
+from app.interface.grpc.user_handler import UserServicer
 from sqlalchemy.orm import Session, sessionmaker
 
-from pb.tamashii_pb2_grpc import add_TamashiiServiceServicer_to_server
+from pb.user_pb2_grpc import add_UserServiceServicer_to_server
 
 
 def serve():
@@ -22,12 +22,12 @@ def serve():
     SessionClass = sessionmaker(engine)
     session = SessionClass()
 
-    tamashii_repository = TamashiiRepositoryImpl(session)
-    tamashii_service = TamashiiService(tamashii_repository)
+    user_repository = UserRepositoryImpl(session)
+    user_service = UserService(user_repository)
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
-    add_TamashiiServiceServicer_to_server(TamashiiServicer(tamashii_service), server)
+    add_UserServiceServicer_to_server(UserServicer(user_service), server)
 
     port = os.getenv("PORT")
     server.add_insecure_port(f"[::]:{port}")

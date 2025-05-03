@@ -1,6 +1,7 @@
-# Tamashii Service
+# Python gRPC Server
 
 - Microservices architecture
 - gRPC
-- DDD
+- Buf
+- Clean Architecture
 - Docker
