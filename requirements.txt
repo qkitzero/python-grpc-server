@@ -1,0 +1,5 @@
+protobuf~=6.30.2
+types-protobuf~=5.29
+grpcio
+mysql-connector-python
+sqlalchemy
