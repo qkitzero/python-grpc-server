@@ -1,5 +1,4 @@
 from app.application.user_usecase import UserUsecase
-
 from gen.python.proto.user.v1 import user_pb2, user_pb2_grpc
 
 

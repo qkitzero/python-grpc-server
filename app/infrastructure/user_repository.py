@@ -1,7 +1,8 @@
 from domain.user import User
 from domain.user_repository_interface import UserRepositoryInterface
-from app.infrastructure.user_table import UserTable
 from sqlalchemy.orm import Session
+
+from app.infrastructure.user_table import UserTable
 
 
 class UserRepositoryImpl(UserRepositoryInterface):

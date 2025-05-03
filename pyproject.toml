@@ -3,11 +3,11 @@ line-length = 88
 target-version = ['py39']
 include = '\.pyi?$'
 extend-exclude = '''
-pb/
+gen/
 '''
 
 [tool.isort]
 profile = "black"
 skip = [
-    "pb/"
+    "gen/"
 ]
