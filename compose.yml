@@ -44,13 +44,5 @@ services:
     volumes:
       - user-db-data:/var/lib/mysql
 
-  protoc:
-    build:
-      context: .
-      dockerfile: ./build/protoc/Dockerfile
-    volumes:
-      - .:/work
-    command: /bin/sh -c "python -m grpc_tools.protoc -I./proto --python_out=./pb --pyi_out=./pb --grpc_python_out=./pb ./proto/*.proto"
-
 volumes:
   user-db-data:

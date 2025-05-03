@@ -1,6 +1,6 @@
 from app.application.user_usecase import UserUsecase
 
-from pb import user_pb2, user_pb2_grpc
+from gen.python.proto.user.v1 import user_pb2, user_pb2_grpc
 
 
 class UserHandler(user_pb2_grpc.UserServiceServicer):

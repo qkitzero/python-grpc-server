@@ -8,7 +8,7 @@ from app.infrastructure.user_repository import UserRepositoryImpl
 from app.interface.grpc.user_handler import UserHandler
 from sqlalchemy.orm import Session, sessionmaker
 
-from pb.user_pb2_grpc import add_UserServiceServicer_to_server
+from gen.python.proto.user.v1 import user_pb2_grpc
 
 
 def serve():
@@ -27,7 +27,7 @@ def serve():
 
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
 
-    add_UserServiceServicer_to_server(UserHandler(user_usecase), server)
+    user_pb2_grpc.add_UserServiceServicer_to_server(UserHandler(user_usecase), server)
 
     port = os.getenv("PORT")
     server.add_insecure_port(f"[::]:{port}")
