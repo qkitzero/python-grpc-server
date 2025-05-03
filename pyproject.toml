@@ -9,5 +9,6 @@ gen/
 [tool.isort]
 profile = "black"
 skip = [
+    "venv/",
     "gen/"
 ]
