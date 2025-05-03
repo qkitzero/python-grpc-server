@@ -1,6 +1,6 @@
 # Python gRPC Server
 
-- Microservices architecture
+- Microservices Architecture
 - gRPC
 - Buf
 - Clean Architecture
